@@ -16,20 +16,24 @@ Route::get('/', function () {
         "greetings" => "greetings "
     ]);
 });
-Route::get('/about', function () {  
+Route::get('/about', function () {
     return view('about');
 });
 Route::get('/contact', function () {
     return response()->json(['name' => 'John Doe', 'email' => 'k']);
 });
 Route::get('/jobs/', function () {
-    $test=Job::all();
-    $res=[];
-    foreach($test as $job){
-        $res[]=[
-            "title" => $job->title,
-            "salary" => $job->salary,
-        ];
-    }
-    dd($res);
+    $test=Job::with('employer')->paginate(3 );
+    return view('jobs/jobs',[
+        "jobs" => $test
+    ]);
+});
+Route::get('/jobs/create', function () {
+    dd("hello world");
+});
+Route::get('/jobs/{id}', function ($id) {
+    $job=Job::find($id);
+    return view('jobs/job',[
+        "job" => $job
+    ]);
 });
