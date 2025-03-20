@@ -3,14 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\job;
 
-$jobs=[
-    [
-        "title" => "PHP Developer",
-        "description" => "This is an awesome job!!!",
-            "contact" => "If you are interested send us your resume to"
-        ]
-];
-
 Route::get('/', function () {
     return view('welcome',[
         "greetings" => "greetings "
