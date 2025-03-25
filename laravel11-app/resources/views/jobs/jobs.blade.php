@@ -1,4 +1,4 @@
-<x-layout>
+<x-navbar>
     <div>
     @foreach ($jobs as $job )
         <div class='border-4 p-4 m-4 rounded-lg border-sky-300'>
@@ -12,4 +12,4 @@
     <div>
         {{$jobs->links()}}
     </div>
-</x-layout>
+</x-navbar>

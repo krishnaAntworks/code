@@ -10,6 +10,7 @@ class Job extends Model
     /** @use HasFactory<\Database\Factories\JobFactory> */
     use HasFactory;
     protected $table = 'jobs_listings';
+    protected $fillable = ['title','salary','employer_id'];
     public function employer(){
         return $this->belongsTo(Employer::class);
     }

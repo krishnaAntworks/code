@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobContoller;
 use Illuminate\Support\Facades\Route;
 use App\Models\job;
 
@@ -14,18 +15,9 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return response()->json(['name' => 'John Doe', 'email' => 'k']);
 });
-Route::get('/jobs/', function () {
-    $test=Job::with('employer')->paginate(3 );
-    return view('jobs/jobs',[
-        "jobs" => $test
-    ]);
-});
-Route::get('/jobs/create', function () {
-    dd("hello world");
-});
-Route::get('/jobs/{id}', function ($id) {
-    $job=Job::find($id);
-    return view('jobs/job',[
-        "job" => $job
-    ]);
-});
+Route::get('/jobs/', [JobContoller::class, 'index']);
+Route::get('/jobs/create', [JobContoller::class, 'create']);
+Route::post('/jobs', [JobContoller::class, 'store']);
+Route::get('/jobs/{id}/edit', [JobContoller::class, 'edit']);
+Route::post('/jobs/{id}/edit', [JobContoller::class, 'update']);
+Route::get('/jobs/{id}', [JobContoller::class, 'show']);
